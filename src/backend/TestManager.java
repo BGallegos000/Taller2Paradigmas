@@ -27,41 +27,89 @@ public class TestManager {
     /** Carga preguntas desde un CSV con formato:
      *  enunciado;nivelBloom;tiempoEstimado;asignatura;MC|TF;opciones|ó vacío;correcta
      */
-    public void loadFromFile(File f) throws IOException {
+    public void loadFromFile(File f, String asignaturaSeleccionada) throws IOException {
         items.clear();
         respuestas.clear();
         current = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-            // 1) Leer y descartar la cabecera
+            // Leer y descartar la cabecera
             String linea = br.readLine();
-            // 2) Procesar resto de líneas
+            // Procesar el resto de las líneas
             while ((linea = br.readLine()) != null) {
                 if (linea.trim().isEmpty()) continue;
                 String[] p = linea.split(";");
+
+                // Si la línea no tiene suficientes datos, la ignoramos
+                if (p.length < 7) {
+                    System.err.println("Línea mal formada (menos de 7 columnas): " + linea);
+                    continue;
+                }
+
                 String enun    = p[0];
                 String nivel   = p[1];
-                int tiempo     = Integer.parseInt(p[2]);
+                String tiempoStr = p[2];  // Tiempo como String
                 String asig    = p[3];
                 String tipo    = p[4];
 
+                // Verificar si la asignatura coincide con la seleccionada
+                if (!asig.equals(asignaturaSeleccionada)) {
+                    continue; // Si la asignatura no coincide, omitir esta pregunta
+                }
+
+                // Manejar tiempo vacío
+                int tiempo = 0;
+                try {
+                    if (!tiempoStr.trim().isEmpty()) {
+                        tiempo = Integer.parseInt(tiempoStr);
+                    } else {
+                        tiempo = 5; // Valor por defecto
+                    }
+                } catch (NumberFormatException e) {
+                    System.err.println("Error al parsear tiempo en la línea: " + linea);
+                    continue;
+                }
+
+                // Procesar las preguntas de tipo MC o TF
                 if ("MC".equals(tipo)) {
                     String[] ops = p[5].split("\\|");
-                    int corr     = Integer.parseInt(p[6]);
+                    String respuestaCorrectaStr = p[6];  // Respuesta correcta como String
+                    int corr = 0;
+                    try {
+                        if (!respuestaCorrectaStr.trim().isEmpty()) {
+                            corr = Integer.parseInt(respuestaCorrectaStr);
+                        } else {
+                            corr = 1; // Valor por defecto
+                        }
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error al parsear respuesta correcta en la línea: " + linea);
+                        continue;
+                    }
                     items.add(new PreguntaEleccionMultiple(enun, nivel, tiempo, asig, ops, corr));
-                }
-                else if ("TF".equals(tipo)) {
-                    boolean corr = Boolean.parseBoolean(p[6]);
+                } else if ("TF".equals(tipo)) {
+                    String respuestaCorrectaStr = p[6];  // Respuesta correcta como String
+                    boolean corr = false;
+                    if (!respuestaCorrectaStr.trim().isEmpty()) {
+                        corr = Boolean.parseBoolean(respuestaCorrectaStr);
+                    }
                     items.add(new PreguntaVerdaderoFalso(enun, nivel, tiempo, asig, corr));
-                }
-                else {
-                    throw new IOException("Tipo desconocido en CSV: " + tipo);
+                } else {
+                    System.err.println("Tipo desconocido en CSV: " + tipo);
+                    continue;
                 }
             }
+        } catch (IOException e) {
+            throw new IOException("Error al leer el archivo: " + e.getMessage());
+        }
+
+        // Si no se encontraron preguntas para la asignatura seleccionada
+        if (items.isEmpty()) {
+            System.err.println("No se encontraron preguntas para la asignatura seleccionada.");
         }
 
         notifyLoaded();
     }
+
 
     public int totalItems() { return items.size(); }
     public int totalTime()  { return items.stream().mapToInt(Pregunta::getTiempoEstimado).sum(); }
