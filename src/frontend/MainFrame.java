@@ -1,11 +1,11 @@
 package frontend;
+import java.util.Collections; // Agregar esta línea para importar Collections
 
 import backend.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.Collections;
 import java.util.Map;
 
 public class MainFrame extends JFrame implements TestEventListener {
@@ -23,6 +23,9 @@ public class MainFrame extends JFrame implements TestEventListener {
     // Results & review
     private JTextArea txtResults;
     private int reviewIdx = 0;
+
+    // Añadimos la declaración de asignaturaComboBox
+    private JComboBox<String> asignaturaComboBox;
 
     public MainFrame() {
         super("Pruebas Taxonomía de Bloom");
@@ -51,20 +54,43 @@ public class MainFrame extends JFrame implements TestEventListener {
         loadP = new JPanel(new BorderLayout());
         JLabel msg = new JLabel("Seleccione archivo CSV", SwingConstants.CENTER);
         JButton btn = new JButton("Cargar ítems");
+
+        // Crear JComboBox para seleccionar asignatura
+        asignaturaComboBox = new JComboBox<>(new String[] { "Historia", "Lenguaje", "Programación", "Ciencias" });
+        JPanel comboPanel = new JPanel();
+        comboPanel.add(new JLabel("Seleccionar asignatura:"));
+        comboPanel.add(asignaturaComboBox);
+
         btn.addActionListener(e -> {
             JFileChooser fc = new JFileChooser();
             if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 try {
-                    manager.loadFromFile(fc.getSelectedFile());
+                    // Obtener asignatura seleccionada y cargar el archivo filtrado
+                    String asignaturaSeleccionada = (String) asignaturaComboBox.getSelectedItem();
+                    manager.loadFromFile(fc.getSelectedFile(), asignaturaSeleccionada);
+
+                    // Si no se cargan preguntas para la asignatura seleccionada, pedir otro archivo
+                    if (manager.totalItems() == 0) {
+                        JOptionPane.showMessageDialog(this,
+                                "El archivo no contiene preguntas para la asignatura seleccionada. Elija otro archivo.",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this,
+                                "Archivo cargado correctamente.",
+                                "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage(),
                             "Error al cargar", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
+
         loadP.add(msg, BorderLayout.CENTER);
+        loadP.add(comboPanel, BorderLayout.NORTH);
         loadP.add(btn, BorderLayout.SOUTH);
     }
+
 
     private void createSummaryPanel() {
         summaryP = new JPanel(new GridBagLayout());
