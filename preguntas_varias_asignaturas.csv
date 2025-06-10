@@ -1,0 +1,33 @@
+Enunciado;Nivel;Tiempo;Asignatura;Tipo;Opciones;Respuesta
+¿Qué es un adjetivo?;Conocimiento;5;Lenguaje;MC;Describir|Modificar|Acompañar|Sustituir;2
+¿Cuál de las siguientes oraciones es enunciativa?;Comprensión;5;Lenguaje;MC;La puerta está cerrada|Cierra la puerta|¿Cerró la puerta?|Cierra la puerta, por favor;1
+La palabra 'feliz' es un adjetivo calificativo.;Aplicación;5;Lenguaje;TF;;true
+¿Qué tipo de palabra es 'ayer'?;Conocimiento;5;Lenguaje;MC;Adverbio|Sustantivo|Adjetivo|Verbo;1
+El verbo 'hablar' pertenece a la categoría gramatical de los...;Conocimiento;5;Lenguaje;MC;Sustantivos|Verbos|Adjetivos|Adverbios;2
+En una oración, el adverbio 'rápidamente' modifica al verbo.;Comprensión;5;Lenguaje;TF;;true
+¿Qué significa la palabra 'analizar'?;Conocimiento;5;Lenguaje;MC;Investigar detalladamente|Leer superficialmente|Escribir de manera rápida|Leer por encima;1
+El adjetivo 'hermoso' expresa...;Aplicación;5;Lenguaje;MC;Una acción|Una característica|Una sensación|Una pregunta;2
+¿Quién fue el primer presidente de Chile?;Conocimiento;5;Historia;MC;Bernardo O'Higgins|Arturo Prat|Salvador Allende|Sebastián Piñera;1
+¿En qué año comenzó la independencia de Chile?;Conocimiento;5;Historia;MC;1810|1818|1820|1825;1
+La Batalla de Maipú ocurrió en...;Aplicación;5;Historia;MC;1810|1815|1818|1821;3
+La independencia de Chile fue proclamada el 18 de septiembre de 1810.;Conocimiento;5;Historia;TF;;false
+¿Quién fue el líder de la independencia de Argentina?;Conocimiento;5;Historia;MC;José de San Martín|Bernardo O'Higgins|Simón Bolívar|Manuel Belgrano;1
+¿Qué país colonizó Chile?;Conocimiento;5;Historia;MC;Francia|España|Inglaterra|Portugal;2
+¿Qué fecha se conmemora en Chile el 12 de octubre?;Conocimiento;5;Historia;MC;Día de la independencia|Día del encuentro de dos mundos|Día de la bandera|Día de la patria;2
+La guerra del Pacífico se libró entre...;Aplicación;5;Historia;MC;Chile y Argentina|Chile y Perú|Chile, Perú y Bolivia|Chile y Bolivia;3
+¿Qué es un array?;Conocimiento;5;Programación;MC;Un tipo de variable|Una estructura de datos|Un lenguaje de programación|Una operación matemática;2
+¿Qué es una variable?;Conocimiento;5;Programación;MC;Un tipo de dato|Un contenedor de valores|Un operador|Una instrucción de control;2
+¿Qué hace un ciclo 'for' en programación?;Aplicación;5;Programación;MC;Repite una acción mientras se cumpla una condición|Evalúa una expresión booleana|Permite tomar decisiones|Declara una variable;1
+El operador '==' se utiliza para comparar si dos valores son...;Conocimiento;5;Programación;MC;Iguales|Distintos|Menores|Mayores;1
+¿Qué tipo de dato es 'int' en Java?;Conocimiento;5;Programación;MC;Cadena de texto|Número entero|Valor decimal|Booleano;2
+"¿Cuál es la salida de este código: int a = 5; System.out.println(a);";Aplicación;5;Programación;MC;5|10|Error|Nulo;1
+¿Qué significa 'void' en una función?;Conocimiento;5;Programación;MC;No devuelve ningún valor|Devuelve un valor booleano|Especifica el tipo de retorno|Especifica que la función es recursiva;1
+¿Qué hace una instrucción 'if'?;Conocimiento;5;Programación;MC;Compara dos valores|Crea una estructura de repetición|Permite ejecutar una condición|Declara una variable;3
+¿Qué es la gravedad?;Conocimiento;5;Ciencias;MC;La fuerza que atrae los cuerpos hacia el centro de la Tierra|La fuerza que mantiene los objetos en movimiento|La fuerza que impulsa los objetos hacia el cielo|La fuerza que genera el sol;1
+La ley de la gravedad fue formulada por...;Conocimiento;5;Ciencias;MC;Isaac Newton|Albert Einstein|Galileo Galilei|Marie Curie;1
+¿Qué es la fotosíntesis?;Conocimiento;5;Ciencias;MC;Proceso mediante el cual las plantas obtienen energía|Proceso mediante el cual las plantas se reproducen|Proceso que ocurre en los animales|Reacción que produce dióxido de carbono;1
+El agua hierve a 100°C.;Conocimiento;5;Ciencias;TF;;true
+¿Cuántos planetas tiene el sistema solar?;Conocimiento;5;Ciencias;MC;7|8|9|10;2
+El oxígeno es un gas necesario para la respiración humana.;Conocimiento;5;Ciencias;TF;;true
+¿Qué es el ADN?;Conocimiento;5;Ciencias;MC;Ácido Desoxirribonucleico|Ácido Ribonucleico|Proteína|Carbohidrato;1
+La teoría de la relatividad fue propuesta por...;Conocimiento;5;Ciencias;MC;Isaac Newton|Albert Einstein|Max Planck|Charles Darwin;2
